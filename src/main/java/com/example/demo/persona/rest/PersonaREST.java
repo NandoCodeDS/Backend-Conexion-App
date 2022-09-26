@@ -28,6 +28,7 @@ public class PersonaREST {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        //Continuar con la integracion al front
 
 
     }
