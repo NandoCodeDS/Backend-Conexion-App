@@ -26,7 +26,19 @@ public class PersonaService implements PersonaRepository{
 
     @Override
     public List<Persona> findAll(Sort sort) {
-        return null;
+        return personaRepository.findAll(sort);
+    }
+
+    @Override
+    public void deleteById(Integer integer) {
+        personaRepository.deleteById(integer);
+
+    }
+
+    @Override
+    public void delete(Persona entity) {
+        personaRepository.delete(entity);
+
     }
 
     @Override
@@ -44,17 +56,7 @@ public class PersonaService implements PersonaRepository{
         return 0;
     }
 
-    @Override
-    public void deleteById(Integer integer) {
-        personaRepository.deleteById(integer);
 
-    }
-
-    @Override
-    public void delete(Persona entity) {
-        personaRepository.delete(entity);
-
-    }
 
     @Override
     public void deleteAllById(Iterable<? extends Integer> integers) {

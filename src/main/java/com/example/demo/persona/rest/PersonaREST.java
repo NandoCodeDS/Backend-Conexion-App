@@ -28,8 +28,11 @@ public class PersonaREST {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        //Continuar con la integracion al front
+    }
 
-
+    @DeleteMapping (value = "delete/{id}")
+    private ResponseEntity<Boolean> deletePersona(@PathVariable ("id") Integer id){
+        personaService.deleteById(id);
+        return ResponseEntity.ok(!(personaService.findById(id)!=null));
     }
 }

@@ -27,6 +27,10 @@ public class Estado {
         return pais;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setPais(Pais pais) {
         this.pais = pais;
     }
