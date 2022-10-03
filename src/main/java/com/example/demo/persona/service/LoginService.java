@@ -1,5 +1,6 @@
 package com.example.demo.persona.service;
 
+import com.example.demo.model.Estado;
 import com.example.demo.model.Login;
 import com.example.demo.persona.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -20,25 +22,24 @@ public class LoginService implements LoginRepository {
     @Autowired
     LoginRepository loginRepository;
 
-    @Override
-    public void deleteById(String correo) {
-        loginRepository.deleteById(correo);
-    }
-
-    @Override
-    public List<Login> findAllById(Iterable<String> strings) {
-        return loginRepository.findAllById(strings);
-    }
-
-    @Override
-    public <S extends Login> S save(S entity) {
-        return loginRepository.save(entity);
-    }
 
     @Override
     public List<Login> findAll() {
-        return null;
+        return loginRepository.findAll();
     }
+
+    public List<Login> findAllByNewId(int id){
+        List<Login> loginRespuesta=new ArrayList<>();
+        List<Login> login = loginRepository.findAll();
+        for(int i=0; i<login.size();i++){
+            if(login.get(i).getId()==id){
+                loginRespuesta.add(login.get(i));
+            }
+        }
+        return loginRespuesta;
+    }
+
+
 
     @Override
     public List<Login> findAll(Sort sort) {
@@ -50,11 +51,44 @@ public class LoginService implements LoginRepository {
         return null;
     }
 
-
+    @Override
+    public List<Login> findAllById(Iterable<Integer> integers) {
+        return null;
+    }
 
     @Override
     public long count() {
         return 0;
+    }
+
+    @Override
+    public void deleteById(Integer integer) {
+        loginRepository.deleteById(integer);
+    }
+
+    @Override
+    public void delete(Login entity) {
+
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends Integer> integers) {
+
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends Login> entities) {
+
+    }
+
+    @Override
+    public void deleteAll() {
+
+    }
+
+    @Override
+    public <S extends Login> S save(S entity) {
+        return loginRepository.save(entity);
     }
 
     @Override
@@ -63,12 +97,12 @@ public class LoginService implements LoginRepository {
     }
 
     @Override
-    public Optional<Login> findById(String s) {
-        return Optional.empty();
+    public Optional<Login> findById(Integer integer) {
+        return loginRepository.findById(integer);
     }
 
     @Override
-    public boolean existsById(String s) {
+    public boolean existsById(Integer integer) {
         return false;
     }
 
@@ -93,7 +127,7 @@ public class LoginService implements LoginRepository {
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<String> strings) {
+    public void deleteAllByIdInBatch(Iterable<Integer> integers) {
 
     }
 
@@ -103,17 +137,17 @@ public class LoginService implements LoginRepository {
     }
 
     @Override
-    public Login getOne(String s) {
+    public Login getOne(Integer integer) {
         return null;
     }
 
     @Override
-    public Login getById(String s) {
+    public Login getById(Integer integer) {
         return null;
     }
 
     @Override
-    public Login getReferenceById(String s) {
+    public Login getReferenceById(Integer integer) {
         return null;
     }
 
@@ -151,28 +185,4 @@ public class LoginService implements LoginRepository {
     public <S extends Login, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
-
-
-
-    @Override
-    public void delete(Login entity) {
-
-    }
-
-    @Override
-    public void deleteAllById(Iterable<? extends String> strings) {
-
-    }
-
-    @Override
-    public void deleteAll(Iterable<? extends Login> entities) {
-
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
-
-
 }

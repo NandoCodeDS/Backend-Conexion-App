@@ -21,7 +21,7 @@ public class PersonaREST {
     }
 
     @PostMapping
-    private ResponseEntity<Persona> savePersona (@RequestBody Persona persona){
+    private ResponseEntity<Persona> savePersona(@RequestBody Persona persona){
         try {
             Persona personaGuardada = personaService.save(persona);
             return ResponseEntity.created(new URI("/persona/"+personaGuardada.getId())).body(personaGuardada);

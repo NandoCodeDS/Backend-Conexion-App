@@ -15,25 +15,32 @@ import java.util.List;
 public class LoginREST {
     @Autowired
     private LoginService loginService;
+
     @GetMapping()
-    private ResponseEntity<List<Login>> getAllPersona(){
+    private ResponseEntity<List<Login>> getAllLogin(){
         return ResponseEntity.ok(loginService.findAll());
     }
 
+    @GetMapping ("{id}")
+    private ResponseEntity<List<Login>> getUserById(@PathVariable("id") int idUser){
+        return ResponseEntity.ok(loginService.findAllByNewId(idUser));
+    }
+
+
     @PostMapping
-    private ResponseEntity<Login> savePersona (@RequestBody Login login){
+    private ResponseEntity<Login> saveLogin(@RequestBody Login login){
         try {
             Login personaGuardada = loginService.save(login);
-            return ResponseEntity.created(new URI("/login/"+personaGuardada.getEmail())).body(personaGuardada);
+            return ResponseEntity.created(new URI("/login/"+personaGuardada.getId())).body(personaGuardada);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
-    @DeleteMapping (value = "delete/{email}")
-    private ResponseEntity<Boolean> deletePersona(@PathVariable ("email") String id_email){
-        loginService.deleteById(id_email);
-        return ResponseEntity.ok(!(loginService.findById(id_email)!=null));
+    @DeleteMapping ("{id}")
+        private ResponseEntity<Boolean> deleteLogin(@PathVariable("id") int idUser){
+            loginService.deleteById(idUser);
+            return ResponseEntity.ok(!(loginService.findAllByNewId(idUser)!=null));
     }
 
 }

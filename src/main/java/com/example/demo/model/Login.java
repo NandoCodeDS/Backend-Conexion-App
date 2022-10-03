@@ -1,10 +1,13 @@
 package com.example.demo.model;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 
 @Entity
 public class Login {
         @Id
+        private Integer id;
         private String email;
         private String password;
         private String token;
@@ -12,7 +15,8 @@ public class Login {
     public Login() {
     }
 
-    public Login(String email, String password, String token) {
+    public Login(int id, String email, String password, String token) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.token = token;
@@ -40,5 +44,13 @@ public class Login {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
