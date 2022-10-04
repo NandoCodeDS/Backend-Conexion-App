@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/login/")
+@RequestMapping("/usuarios/")
 public class LoginREST {
     @Autowired
     private LoginService loginService;
@@ -31,7 +31,7 @@ public class LoginREST {
     private ResponseEntity<Login> saveLogin(@RequestBody Login login){
         try {
             Login personaGuardada = loginService.save(login);
-            return ResponseEntity.created(new URI("/login/"+personaGuardada.getId())).body(personaGuardada);
+            return ResponseEntity.created(new URI("/usuarios/"+personaGuardada.getId())).body(personaGuardada);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
