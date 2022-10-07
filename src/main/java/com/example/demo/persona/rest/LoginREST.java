@@ -12,6 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/log/")
+<<<<<<< HEAD
+=======
+//login
+>>>>>>> 269816d8ee6738c1cbd9eba997c8d1149c1c3caa
 public class LoginREST {
     @Autowired
     private LoginService loginService;
