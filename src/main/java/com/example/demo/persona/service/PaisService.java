@@ -1,7 +1,9 @@
 package com.example.demo.persona.service;
 
+import com.example.demo.model.Estado;
 import com.example.demo.model.Pais;
 import com.example.demo.persona.repository.PaisRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,17 +11,30 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
 @Service
 public class PaisService implements PaisRepository{
+    @Autowired
     private PaisRepository paisRepository;
 
     @Override
     public List<Pais> findAll() {
         return paisRepository.findAll();
+    }
+
+    public List<Pais> findByPais(int id){
+        List<Pais> paisRespuesta=new ArrayList<>();
+        List<Pais> pais = paisRepository.findAll();
+        for(int i=0; i<pais.size();i++){
+            if(pais.get(i).getId()==id){
+                paisRespuesta.add(pais.get(i));
+            }
+        }
+        return paisRespuesta;
     }
 
     @Override
