@@ -12,8 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/log/")
-//login
 public class LoginREST {
+    /*("login") esta parte va en requestMapping
+    cuando queremos usar Id en cambio de email 
+    para busquedas GET*/
     @Autowired
     private LoginService loginService;
 
