@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios/")
+@RequestMapping("/log/")
 public class LoginREST {
     @Autowired
     private LoginService loginService;
