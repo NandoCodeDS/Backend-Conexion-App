@@ -15,7 +15,7 @@ public class Login {
     public Login() {
     }
 
-    public Login(int id, String email, String password, String token) {
+    public Login(Integer id, String email, String password, String token) {
         this.id = id;
         this.email = email;
         this.password = password;
