@@ -17,6 +17,11 @@ public class LoginStrREST {
     @Autowired
     private LoginServiceStr loginServiceStr;
 
+    @GetMapping()
+    private ResponseEntity<List<Login>> getAllLogin(){
+        return ResponseEntity.ok(loginServiceStr.findAll());
+    }
+
     @GetMapping("{email}")
     private ResponseEntity<List<Login>> getUserByMail(@PathVariable("email") String id_mail){
         return ResponseEntity.ok(loginServiceStr.findByEmail(id_mail));
